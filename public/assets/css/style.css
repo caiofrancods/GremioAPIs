@@ -1,0 +1,158 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap'); */
+
+/* body {
+  font-family: 'Poppins', sans-serif; 
+  height: 100%;
+  width: 100%;
+} */
+
+
+.cabecalho {
+  padding: 15px;
+  background-color: #051d40;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.corpo {
+  padding: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #fafafa;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.separate {
+  border: 0;
+  border-top: 1px solid gray;
+  padding-top: 2px;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+ul.navUL {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.navUL li {
+  display: inline-block;
+  padding: 0px 5px;
+}
+
+ul.navUL li a {
+  color: #f1eaea;
+  display: block;
+  padding: 3px;
+  text-decoration: none;
+}
+
+ul.navUL li a:hover {
+  color: #949494;
+  text-decoration: none;
+}
+
+
+.faq strong{
+  font-size: 20px;
+}
+
+.question {
+  background-color: #b8b9c7;
+  padding: 10px;
+  border: 1px solid #90919e;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.answer {
+  display: none;
+  padding: 10px;
+}
+
+iframe {
+    overflow: hidden;
+    width: 70%;
+    height: 120vh;
+    border: none;
+}
+
+.frame{
+    overflow: hidden;
+    width: 70%;
+    height: 60vh;
+    border: none;
+}
+
+@media screen and (max-width: 500px) {
+    iframe {
+        overflow: hidden;
+        width: 100%;
+        height: 90vh;
+        border: none;
+    }
+    
+    .frame{
+        overflow: hidden;
+        width: 100%;
+        height: 60vh;
+        border: none;
+    }
+}
+.accordion-item {
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+}
+
+.accordion button {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  background-color: #f7f7f7;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion button[aria-expanded="true"] {
+  background-color: #e0e0e0;
+}
+
+.accordion-content {
+  padding: 10px;
+  display: none;
+}
+
+.accordion-content[aria-hidden="false"] {
+  display: block;
+}
+
+.accordion .icon {
+  transition: transform 0.2s ease;
+}
+
+.accordion button[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
