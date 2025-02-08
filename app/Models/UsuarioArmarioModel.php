@@ -19,7 +19,6 @@ class UsuarioArmarioModel extends Model
 
     public function insertUsuario($data)
     {
-        
         return $this->insert($data);
     }
 
@@ -30,14 +29,12 @@ class UsuarioArmarioModel extends Model
 
     public function autenticar($usuario, $senha)
     {
-        // Busca o usuário pelo e-mail
         $usuario = $this->where('email', $usuario)->first();
 
-        // Verifica se o usuário existe e se a senha está correta
         if ($usuario && password_verify($senha, $usuario['senha'])) {
-            return $usuario; // Retorna o usuário autenticado
+            return $usuario;
         }
 
-        return "erro"; // Retorna erro se não encontrar o usuário ou a senha estiver incorreta
+        return "erro";
     }
 }

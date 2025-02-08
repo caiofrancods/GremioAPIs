@@ -16,8 +16,15 @@ class ArmarioModel extends Model
         return $idUsuario ? $this->find($idUsuario) : $this->findAll();
     }
 
-    public function transferirArmario($destinatario, $armario)
+    public function transferirArmario($destinatarioEmail, $armarioId)
     {
-        //return $this->insert($data);
+        $usuario = $this->where('email', $destinatarioEmail)->first();
+    
+        if (!$usuario) {
+            return false;
+        }
+    
+        $builder = $this->db->table('armarios');
+        return $builder->where('id', $armarioId)->update(['dono' => $usuario['id']]);
     }
 }

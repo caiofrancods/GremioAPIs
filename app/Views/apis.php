@@ -30,39 +30,129 @@
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo/armarios</span>
+              <span class="accordion-title">api.gremiotimoteo.online/armarios</span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+
           </button>
           <div class="accordion-content" aria-hidden="true">
-            <p>Retorna a lista de armários cadastrados no banco de dados</p>
+            <p>Retorna a lista de armários cadastrados no banco de dados.</p>
           </div>
         </div>
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo/armarios/{idArmario}</span>
+              <span class="accordion-title">api.gremiotimoteo.online/armarios/auth/{email}/{senha}</span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
           <div class="accordion-content" aria-hidden="true">
-            <p>Retorna as informações do armário</p>
+            <p>Autentica o usuário do sistema e retorna o cadastro dele.</p>
           </div>
         </div>
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo/armarios/usuario/{idUsuario}</span>
+              <span class="accordion-title">api.gremiotimoteo.online/armarios/infousuario/{idUsuario}</span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
           <div class="accordion-content" aria-hidden="true">
-            <p>Retorna um array com a lista de todos os armários que o usuário é proprietário</p>
+            <p>Retorna as informações do usuário</p>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title">api.gremiotimoteo.online/armarios/usuario/{idUsuario}</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Retorna um array com a lista de todos os armários que o usuário é proprietário</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/transferencia/{emailDestinatario}/{idArmario}</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Passa a propriedade do armário de um usuário para outro</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Envia o e-mail de recuperação de senha</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[POST]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/cadastrar</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Cadastra o usuário</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[PUT]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/alterarDados</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Altera os dados do usuário</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[PUT]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/alterarSenha</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Altera a senha do usuário</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[PUT]</span>
+                <span
+                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/cadastrar</span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Transfere a propriedade do armário de um usuário a outro</p>
+            </div>
           </div>
         </div>
-        
       </div>
       <div class="card-bodycard p-3">
       </div>
@@ -81,6 +171,7 @@
       <div class="card-body">
       </div>
     </div>
+  </div>
   </div>
   <script type="text/javascript">
     const items = document.querySelectorAll(".accordion button");
