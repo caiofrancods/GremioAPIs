@@ -1,0 +1,22 @@
+[11-Feb-2025 21:33:51 America/Fortaleza] PHP Warning:  require_once(/home2/gremio78/APIs/app/Config/Config/Constants.php): Failed to open stream: No such file or directory in /home2/gremio78/APIs/vendor/codeigniter4/framework/system/Boot.php on line 219
+[11-Feb-2025 21:33:51 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/gremio78/APIs/app/Config/Config/Constants.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/gremio78/APIs/vendor/codeigniter4/framework/system/Boot.php:219
+Stack trace:
+#0 /home2/gremio78/APIs/vendor/codeigniter4/framework/system/Boot.php(45): CodeIgniter\Boot::loadConstants()
+#1 /home2/gremio78/APIs/public/index.php(56): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#2 {main}
+  thrown in /home2/gremio78/APIs/vendor/codeigniter4/framework/system/Boot.php on line 219
+[12-Feb-2025 16:37:37 America/Fortaleza] PHP Warning:  require(/home2/gremio78/APIs/public/app/Config/Paths.php): Failed to open stream: No such file or directory in /home2/gremio78/APIs/public/index.php on line 48
+[12-Feb-2025 16:37:37 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/gremio78/APIs/public/app/Config/Paths.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/gremio78/APIs/public/index.php:48
+Stack trace:
+#0 {main}
+  thrown in /home2/gremio78/APIs/public/index.php on line 48
+[12-Feb-2025 16:37:38 America/Fortaleza] PHP Warning:  require(/home2/gremio78/APIs/public/app/Config/Paths.php): Failed to open stream: No such file or directory in /home2/gremio78/APIs/public/index.php on line 48
+[12-Feb-2025 16:37:38 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/gremio78/APIs/public/app/Config/Paths.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/gremio78/APIs/public/index.php:48
+Stack trace:
+#0 {main}
+  thrown in /home2/gremio78/APIs/public/index.php on line 48
+[12-Feb-2025 16:37:39 America/Fortaleza] PHP Warning:  require(/home2/gremio78/APIs/public/app/Config/Paths.php): Failed to open stream: No such file or directory in /home2/gremio78/APIs/public/index.php on line 48
+[12-Feb-2025 16:37:39 America/Fortaleza] PHP Fatal error:  Uncaught Error: Failed opening required '/home2/gremio78/APIs/public/app/Config/Paths.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home2/gremio78/APIs/public/index.php:48
+Stack trace:
+#0 {main}
+  thrown in /home2/gremio78/APIs/public/index.php on line 48

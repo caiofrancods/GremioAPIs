@@ -30,48 +30,120 @@
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo.online/armarios</span>
+              <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios">api.gremiotimoteo.online/armarios</a></span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
 
           </button>
           <div class="accordion-content" aria-hidden="true">
             <p>Retorna a lista de armários cadastrados no banco de dados.</p>
+            <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+            <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+              <samp>
+                <pre class="text-light">
+{"message": [
+    {
+      "idArmario": "20",
+      "codigo": "2P004",
+      "dono": "9",
+      "situacao": "2",
+      "renovacao": "0",
+      "comp": "Confidencial"
+    }
+    ...
+]}
+</pre>
+              </samp>
+            </div>
           </div>
         </div>
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo.online/armarios/auth/{email}/{senha}</span>
+              <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/armarios/auth/{email}/{senha}</a></span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
           <div class="accordion-content" aria-hidden="true">
-            <p>Autentica o usuário do sistema e retorna o cadastro dele.</p>
+            <p>Autentica o usuário do sistema e retorna o id dele.</p>
+            <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+            <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+              <samp>
+                <pre class="text-light">
+{ "message": "85" }
+</pre>
+              </samp>
+            </div>
           </div>
         </div>
         <div class="accordion-item">
           <button id="accordion-button-1" aria-expanded="false">
             <div>
               <span class="accordion-title p-2">[GET]</span>
-              <span class="accordion-title">api.gremiotimoteo.online/armarios/infousuario/{idUsuario}</span>
+              <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/infousuario/{idUsuario}">api.gremiotimoteo.online/armarios/infousuario/{idUsuario}</a></span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
           <div class="accordion-content" aria-hidden="true">
-            <p>Retorna as informações do usuário</p>
+            <p>Retorna um objeto com as informações do usuário</p>
+            <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+            <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+              <samp>
+                <pre class="text-light">
+{"message": {
+    "idUsuario": "85",
+    "nome": "Caio Franco",
+    "telefone": "(31) 98973-3616",
+    "email": "francocaio80@gmail.com",
+    "dataNascimento": "2007-01-26",
+    "idCurso": "2",
+    "ano": "3",
+    "senha": "Informação Confidencial"
+  }
+}
+</pre>
+              </samp>
+            </div>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
                 <span class="accordion-title p-2">[GET]</span>
-                <span class="accordion-title">api.gremiotimoteo.online/armarios/usuario/{idUsuario}</span>
+                <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/usuario/{idUsuario}">api.gremiotimoteo.online/armarios/usuario/{idUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
-              <p>Retorna um array com a lista de todos os armários que o usuário é proprietário</p>
+              <p>Retorna um array com a lista de todos os armários que o usuário é proprietário.</p>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{"message": [
+    {
+      "idArmario": "118",
+      "codigo": "1B002",
+      "dono": "85",
+      "situacao": "2",
+      "renovacao": "0",
+      "comp": "Confidencial"
+    },
+    {
+      "idArmario": "119",
+      "codigo": "1B006",
+      "dono": "85",
+      "situacao": "2",
+      "renovacao": "0",
+      "comp": "Confidencial"
+    }
+    ...
+  ]
+}
+</pre>
+                </samp>
+              </div>
+
             </div>
           </div>
           <div class="accordion-item">
@@ -79,77 +151,167 @@
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/transferencia/{emailDestinatario}/{idArmario}</span>
-              </div>
-              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
-            </button>
-            <div class="accordion-content" aria-hidden="true">
-              <p>Passa a propriedade do armário de um usuário para outro</p>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <button id="accordion-button-1" aria-expanded="false">
-              <div>
-                <span class="accordion-title p-2">[GET]</span>
-                <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}</span>
+                  class="accordion-title"><a href="api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}">api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Envia o e-mail de recuperação de senha</p>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": "E-mail de recuperação de senha enviado!"
+}
+</pre>
+                </samp>
+              </div>
             </div>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
                 <span class="accordion-title p-2">[POST]</span>
-                <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/cadastrar</span>
+                <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/usuario/cadastrar">api.gremiotimoteo.online/armarios/usuario/cadastrar</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Cadastra o usuário</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "nome": "Fulano",
+    "telefone": "(31) 98347-8238",
+    "email": "fulano@gmail.com",
+    "dataNascimento": "14/01/2012",
+    "idCurso": 3,
+    "ano": 2,
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+              <p>Observação: A senha já deve ser enviada <strong>criptografada como md5</strong></p>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+JSON que receb
+</pre>
+                </samp>
+              </div>
             </div>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
                 <span class="accordion-title p-2">[PUT]</span>
-                <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/alterarDados</span>
+                <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/usuario/alterarDados">api.gremiotimoteo.online/armarios/usuario/alterarDados</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Altera os dados do usuário</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "nome": "Fulano",
+    "telefone": "(31) 98347-8238",
+    "email": "fulano@gmail.com",
+    "dataNascimento": "14/01/2012",
+    "idCurso": 3,
+    "ano": 2
+}
+</pre>
+                </samp>
+              </div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+JSON de recebimento
+</pre>
+                </samp>
+              </div>
             </div>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
                 <span class="accordion-title p-2">[PUT]</span>
-                <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/alterarSenha</span>
+                <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/usuario/alterarSenha">api.gremiotimoteo.online/armarios/usuario/alterarSenha</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Altera a senha do usuário</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "email": "fulano@gmail.com",
+    "novaSenha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+JSON de recebimento
+</pre>
+                </samp>
+              </div>
             </div>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
                 <span class="accordion-title p-2">[PUT]</span>
-                <span
-                  class="accordion-title">api.gremiotimoteo.online/armarios/usuario/cadastrar</span>
+                <span class="accordion-title"><a href="api.gremiotimoteo.online/armarios/transferir">api.gremiotimoteo.online/armarios/transferir</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
-              <p>Transfere a propriedade do armário de um usuário a outro</p>
+              <p>Transfere a propriedade do armário de um usuário a outro.</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "remetente": "emailRemetente@gmail.com",
+  "destinatario": "emailDestinatario@gmail.com",
+  "armario": "1A015"
+}
+</pre>
+                </samp>
+              </div>
+              <div class="row text-center"><I><strong>Retornos Possíveis</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": "Transferência realizada com sucesso",
+  "status": 200
+}
+
+ou
+
+{
+  "message": "Erro ao transferir o armário",
+  "status": 400
+}
+</pre>
+                </samp>
+              </div>
             </div>
           </div>
         </div>
