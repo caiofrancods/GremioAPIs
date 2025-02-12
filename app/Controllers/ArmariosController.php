@@ -19,37 +19,34 @@ class ArmariosController extends ResourceController
   }
   public function index()
   {
-    $db1 = \Config\Database::connect();
-    $query1 = $db1->query("SELECT * FROM Armario");
-    $result1 = $query1->getResult();
-    return $this->respond(['message' => $result1], 200);
+    $armarios = $this->armariosModel->getArmarios();
+    return $this->respond(['message' => $armarios], 200);
   }
 
   public function auth($usuario, $senha)
   {
+    $usuario = urldecode($usuario);
     $resultado = $this->usuarioModel->autenticar($usuario, md5($senha));
+    
 
     if ($resultado === "erro") {
-      return $this->respond(['message' => "Usuário ou senha incorreto / Usuário não encontrado"], 200);
+      return $this->respond(['message' => "Usuário ou senha incorreto / Usuário não encontrado"], 400);
     } else {
-      return $this->respond(['message' => $resultado->id], 200);
+      return $this->respond(['message' => $resultado['idUsuario']], 200);
     }
   }
   public function transferirArmario()
   {
-    $input = $this->request->getRawInput();
+    $input = $this->request->getJSON(true);
 
-    if (!isset($input['destinatario']) || !isset($input['armario'])) {
-      return $this->fail('E-mail do destinatário e ID do armário são obrigatórios.', 400);
+    if (!isset($input['remetente']) || !isset($input['destinatario']) || !isset($input['armario'])) {
+      return $this->fail('E-mail do remetente, do destinatário e ID do armário são obrigatórios.', 400);
     }
-
-    $model = new UsuarioArmarioModel();
-
-    if ($model->transferirArmario($input['destinatario'], $input['armario'])) {
+    //return $this->respond(['message' => $this->armariosModel->transferirArmario($input['remetente'], $input['destinatario'], $input['armario'])], 200);
+    if ($this->armariosModel->transferirArmario($input['remetente'], $input['destinatario'], $input['armario'])) {
       return $this->respond(['message' => 'Transferência realizada com sucesso.']);
     }
-
-    return $this->fail('Erro ao transferir armário. Destinatário não encontrado.', 400);
+    return $this->fail('Erro ao transferir armário', 400);
   }
 
 

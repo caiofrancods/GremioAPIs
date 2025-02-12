@@ -14,9 +14,18 @@ class UsuarioArmarioModel extends Model
 
     public function getUsuarioPorId($idUsuario)
     {
-        return $idUsuario ? $this->find($idUsuario) : $this->findAll();
+        $user = $idUsuario ? $this->find($idUsuario) : $this->findAll();
+        if(!$user){
+            return false;
+        }
+        $user['senha'] = "Informação Confidencial";
+        return $user;
     }
-
+    
+    public function getUsuarioPorEmail($email)
+    {
+        return $this->where('email', $email)->first();
+    }
     public function insertUsuario($data)
     {
         return $this->insert($data);
@@ -31,9 +40,10 @@ class UsuarioArmarioModel extends Model
     {
         $usuario = $this->where('email', $usuario)->first();
 
-        if ($usuario && password_verify($senha, $usuario['senha'])) {
+        if ($usuario && $senha == $usuario['senha']) {
             return $usuario;
         }
+
 
         return "erro";
     }
