@@ -22,19 +22,6 @@ class ArmariosController extends ResourceController
     $armarios = $this->armariosModel->getArmarios();
     return $this->respond(['message' => $armarios], 200);
   }
-
-  public function auth($usuario, $senha)
-  {
-    $usuario = urldecode($usuario);
-    $resultado = $this->usuarioModel->autenticar($usuario, md5($senha));
-    
-
-    if ($resultado === "erro") {
-      return $this->respond(['message' => "Usuário ou senha incorreto / Usuário não encontrado"], 400);
-    } else {
-      return $this->respond(['message' => $resultado['idUsuario']], 200);
-    }
-  }
   public function transferirArmario()
   {
     $input = $this->request->getJSON(true);
@@ -48,8 +35,6 @@ class ArmariosController extends ResourceController
     }
     return $this->fail('Erro ao transferir armário', 400);
   }
-
-
   public function armariosPorUsuario($usuario)
   {
     $armarios = $this->armariosModel->getArmarioDono($usuario);
@@ -110,6 +95,4 @@ class ArmariosController extends ResourceController
 
     return $this->fail('Erro ao alterar dados.', 500);
   }
-
-
 }
