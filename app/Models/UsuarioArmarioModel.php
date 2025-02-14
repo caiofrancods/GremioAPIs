@@ -38,6 +38,8 @@ class UsuarioArmarioModel extends Model
 
     public function autenticar($usuario, $senha)
     {
+        $senha = md5($senha . getenv('code_complementar'));
+
         $usuario = $this->where('email', $usuario)->first();
 
         if ($usuario && $senha == $usuario['senha']) {

@@ -22,19 +22,6 @@ class ArmariosController extends ResourceController
     $armarios = $this->armariosModel->getArmarios();
     return $this->respond(['message' => $armarios], 200);
   }
-
-  public function auth($usuario, $senha)
-  {
-    $usuario = urldecode($usuario);
-    $resultado = $this->usuarioModel->autenticar($usuario, md5($senha));
-    
-
-    if ($resultado === "erro") {
-      return $this->respond(['message' => "Usuário ou senha incorreto / Usuário não encontrado"], 400);
-    } else {
-      return $this->respond(['message' => $resultado['idUsuario']], 200);
-    }
-  }
   public function transferirArmario()
   {
     $input = $this->request->getJSON(true);
@@ -48,16 +35,25 @@ class ArmariosController extends ResourceController
     }
     return $this->fail('Erro ao transferir armário', 400);
   }
-
-
   public function armariosPorUsuario($usuario)
   {
+    $userId = json_decode($this->request->jwtUserId);
+
+    if($userId != $usuario){
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+    }
+
     $armarios = $this->armariosModel->getArmarioDono($usuario);
     return $this->respond(['message' => $armarios], 200);
   }
 
   public function dadosUsuario($usuario)
   {
+    $userId = json_decode($this->request->jwtUserId);
+    
+    if($userId != $usuario){
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+    }
     $user = $this->usuarioModel->getUsuarioPorId($usuario);
     return $this->respond(['message' => $user], 200);
   }
@@ -104,12 +100,16 @@ class ArmariosController extends ResourceController
       return $this->fail('ID do usuário é obrigatório.', 400);
     }
 
+    $userId = json_decode($this->request->jwtUserId);
+    
+    if($userId != $input['id']){
+      return $this->respond(['message' => 'O usuário não pode alterar estes dados'], 401);
+    }
+
     if ($this->usuarioModel->updateUsuario($input['id'], $input)) {
       return $this->respond(['message' => 'Dados alterados com sucesso.']);
     }
 
     return $this->fail('Erro ao alterar dados.', 500);
   }
-
-
 }
