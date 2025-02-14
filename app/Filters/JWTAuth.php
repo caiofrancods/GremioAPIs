@@ -24,6 +24,7 @@ class JWTAuth implements FilterInterface
 
         try {
             $decoded = JWT::decode($token, new Key(getenv('JWT_SECRET'), 'HS256'));
+            $request->jwtUserId = $decoded->data->id;
         } catch (Exception $e) {
             return Services::response()->setJSON(['message' => 'Invalid token'])->setStatusCode(ResponseInterface::HTTP_UNAUTHORIZED);
         }
