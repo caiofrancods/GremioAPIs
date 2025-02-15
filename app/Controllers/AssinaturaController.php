@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DocumentoModel;
+use App\Models\DocumentoUsuarioModel;
 use App\Models\UsuarioArmarioModel;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -10,46 +11,67 @@ class AssinaturaController extends ResourceController
 {
   private $documentoModel;
   private $documentoUsuarioModel;
+
+  private $usuarioGerenciamnto;
   
 
   public function __construct()
   {
     $this->documentoModel = new DocumentoModel();
-    $this->documentoUsuarioModel = new UsuarioArmarioModel();
+    $this->documentoUsuarioModel = new DocumentoUsuarioModel();
+    $this->usuarioGerenciamnto = new Usu();
   }
 
-  public function submissao(){
-    $request = \Config\Services::request();
-
-    $json_data = $request->getBody();
-    $input = json_decode($json_data, true);
-
-    if (!isset($input)) {
-      return $this->fail('Dados para submissão não enviados', 400);
-    }
-    $resultado = $this->documentoModel->submissao($input);
-
-    if ($resultado === "erro") {
-      return $this->respond(['message' => "Erro ao submeter o documento"], 400);
-    } else {
-      $this->enviarParaAssinar($input['signatarios'], $input['codigoDocumento'], $input['nome']);
-      return $this->respond(['message' => 'Documento submetido', 200]);
-    }
+  public function submissao()
+  {
+      error_reporting(E_ALL);
+      ini_set('display_errors', '1');
+  
+      $json_data = $this->request->getBody();
+      $input = json_decode($json_data, true);
+  
+      if (!$input) {
+          return $this->fail('Dados para submissão não enviados', 400);
+      }
+  
+      $resultado = $this->documentoModel->submissao($input);
+  
+      if ($resultado === false) {
+          return $this->fail('Erro ao submeter o documento', 400);
+      }
+  
+      // Chama `enviarParaAssinar()` apenas se o documento foi salvo
+      if (isset($input['signatarios']) && is_array($input['signatarios'])) {
+          $this->enviarParaAssinar($input['signatarios'], $resultado, $input['nome']);
+      }
+  
+      return $this->respond(['message' => 'Documento submetido'], 200);
   }
+  
   public function enviarParaAssinar($signatarios, $codDoc, $nomeDoc)
   {
-    foreach ($signatarios as $sig) {
-        $usuario = $this->documentoUsuarioModel->buscarUsuarioPorId($sig);
-        $data = [
-            'codUsuario' => $sig,
-            'codigoDocumento' => $codDoc,
-            'horario' => date('d/m/Y H:i:s'),
-            'situacao' => 'Pendente'
-        ];
-        $this->documentoUsuarioModel->criarAssinatura($data);
-        enviarEmail($usuario['email'], $codDoc, $usuario['nome'], $nomeDoc);
-    }
+      foreach ($signatarios as $sig) {
+          $usuario = $this->documentoUsuarioModel->buscarUsuarioPorId($sig);
+  
+          if (!$usuario) {
+              log_message('error', "Usuário $sig não encontrado ao tentar enviar para assinatura.");
+              continue;
+          }
+          $data = [
+              'codUsuario' => $sig,
+              'codigoDocumento' => $codDoc,
+              'horario' => date('Y-m-d H:i:s'), // Formato correto para MySQL
+              'situacao' => 'Pendente'
+          ];
+          try {
+              $this->documentoUsuarioModel->criarAssinatura($data);
+              enviarEmail($usuario['email'], $codDoc, $usuario['nome'], $nomeDoc);
+          } catch (\Exception $e) {
+              log_message('error', "Erro ao criar assinatura para usuário $sig: " . $e->getMessage());
+          }
+      }
   }
+  
   public function assinar($codDocumento, $idUsuario){
     if($this->documentoUsuarioModel->assinar($codDocumento, $idUsuario)){
       if($this->documentoUsuarioModel->contarSignatarios() == $this->documentoUsuarioModel->contarAssinaturas()){
@@ -73,7 +95,7 @@ class AssinaturaController extends ResourceController
   public function cancelarSubmissao($codDocumento, $idUsuario){
     if($this->documentoModel->cancelarSubmissao($codDocumento)){
       if($this->documentoUsuarioModel->atualizarSituacao($codDocumento, 'Cancelado')){
-        return $this->respond(['message' => "Documento cancelado!" . $idUsuario], 200);
+        return $this->respond(['message' => "Documento cancelado!"], 200);
       }else{
         return $this->respond(['message' => "Situação não alterada para os usuarios"], 400);
       }
@@ -89,7 +111,7 @@ class AssinaturaController extends ResourceController
       return $this->fail('Dados insuficientes', 400);
     }
 
-    if($this->documentoModel->alterarAcesso($input['novoAcesso'], $input['codigo'])){
+    if($this->documentoModel->alterarAcesso($input['novoAcesso'], $input['codigoDocumento'])){
       return $this->respond(['message' => 'Acesso alterado com sucesso!'], 200);
     }else{
       return $this->respond(['message' => 'Erro ao alterar o acesso!'], 400);

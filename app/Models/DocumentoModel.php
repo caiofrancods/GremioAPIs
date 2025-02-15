@@ -13,9 +13,18 @@ class DocumentoModel extends Model
 
   public function submissao($data)
   {
-    $data['horarioSubmissao'] = date('d/m/Y H:i:s');
-    $data['situacao'] = 'Pendente';
-    return $this->insert($data);
+    {
+      $data['horarioSubmissao'] = date('Y-m-d H:i:s'); // Melhor formato para MySQL
+      $data['situacao'] = 'Pendente';
+
+      try {
+          $this->insert($data);
+          return $this->insertID(); // Retorna o ID do documento inserido
+      } catch (\Exception $e) {
+          log_message('error', 'Erro ao submeter documento: ' . $e->getMessage());
+          return false;
+      }
+  }
   }
   public function documentos()
   {

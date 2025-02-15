@@ -525,8 +525,19 @@ ou
                 <samp>
                   <pre class="text-light">
 {
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+  "message": "Documento cancelado!"
+}
+
+ou
+
+{
+  "message": "Situação não alterada para os usuarios"
+}
+
+ou
+
+{
+  "message": "SDocumento não encontrado"
 }
 </pre>
                 </samp>
@@ -626,8 +637,9 @@ ou
                 <samp>
                   <pre class="text-light">
 {
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+  "novoAcesso": 2,
+  "codigoDocumento": 50,
+  "idUsuario": 2
 }
 </pre>
                 </samp>
@@ -650,9 +662,18 @@ ou
                 <samp>
                   <pre class="text-light">
 {
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+  "nome": "Teste 1",
+  "usuario": 2,
+  "horarioSubmissao": "02/05/2024 10:44:11",
+  "caminho": "teste/1",
+  "tipo": 1,
+  "acesso": 1,
+  "signatarios": {
+    "1": 2,
+    "2": 7
+  }
 }
+
 </pre>
                 </samp>
               </div>

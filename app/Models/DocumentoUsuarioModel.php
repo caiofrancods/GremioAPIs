@@ -15,7 +15,6 @@ class DocumentoUsuarioModel extends Model
 
   public function documentoUsuarios($codigoDocumento)
   {
-    $this->output->enable_profiler(TRUE);
     try {
       $result = $this->where('codigoDocumento', $codigoDocumento)->findAll();
       return $result;
@@ -36,11 +35,16 @@ class DocumentoUsuarioModel extends Model
       return false;
     }
   }
-
   public function criarAssinatura($data)
   {
-    return $this->insert($data);
+      try {
+          return $this->insert($data);
+      } catch (\Exception $e) {
+          log_message('error', 'Erro ao criar assinatura: ' . $e->getMessage());
+          return false;
+      }
   }
+  
 
   public function assinar($cod, $user)
   {
@@ -62,5 +66,4 @@ class DocumentoUsuarioModel extends Model
   {
     return $this->where(['codUsuario' => $codUsuario, 'codigoDocumento' => $codigoDocumento, 'situacao' => 'Assinado'])->countAllResults() > 0;
   }
-
 }
