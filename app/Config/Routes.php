@@ -8,6 +8,7 @@ $routes->get('/', 'Home::index');
 
 $routes->group(name: 'auth', callback: function ($routes) {
   $routes->post('armarios', 'AuthController::authUsuarioArmario');
+  $routes->post('gerencia', 'AuthController::authUsuarioGerenciamento');
 });
 
 
