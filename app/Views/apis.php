@@ -62,8 +62,9 @@
 </pre>
               </samp>
             </div>
-            <p>Para utilizar o token de acesso, envie como "authorization" o texto "Bearer  &lttoken&gt"</p>
-            <p><strong>Todas as requisições que NÃO são de login, precisam de enviar o token para autenticação.</strong></p>
+            <p>Para utilizar o token de acesso, envie como "authorization" o texto "Bearer &lttoken&gt"</p>
+            <p><strong>Todas as requisições que NÃO são de login, precisam de enviar o token para autenticação.</strong>
+            </p>
           </div>
         </div>
 
@@ -356,20 +357,322 @@ ou
       <div class="card-bodycard p-3">
       </div>
     </div>
-    <div class="card mt-2">
-      <div class="card-header text-center">
-        Gerenciamento
-      </div>
-      <div class="card-body">
-      </div>
-    </div>
+
     <div class="card mt-2">
       <div class="card-header text-center">
         Assinaturas
       </div>
-      <div class="card-body">
+      <div class="accordion">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <div>
+              <span class="accordion-title p-2">[GET]</span>
+              <span class="accordion-title"><a
+                  href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos</a></span>
+            </div>
+            <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content" aria-hidden="true">
+            <p>Retorna todos os documentos da base da dados</p>
+            <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+            <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+              <samp>
+                <pre class="text-light">
+{
+  "message": [
+    {
+      "codigoDocumento": "50",
+      "nome": "Decreto 006/2024",
+      "usuario": "15",
+      "horarioSubmissao": "31/07/2024 16:05:57",
+      "situacao": "Assinado",
+      "caminho": "documentos/DECRETO DO GRÊMIO 006_2024.pdf",
+      "comprovante": "skfekj",
+      "tipo": "5",
+      "acesso": "1"
+    }
+    ...
+  ]
+}
+</pre>
+              </samp>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos/tipo/{idTipo}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Retorna todos os documentos daquele tipo específico</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": [
+    {
+      "codigoDocumento": "43",
+      "nome": "2° Reunião Ordinária do Conselho Fiscal",
+      "usuario": "15",
+      "horarioSubmissao": "31/07/2024 14:58:27",
+      "situacao": "Cancelado",
+      "caminho": "documentos/2° Reunião Ordinária do Conselho Fiscal.pdf",
+      "comprovante": "mfrfsk",
+      "tipo": "2",
+      "acesso": "2"
+    }
+    ...
+  ]
+}
+
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos/usuario/{idUsuario}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Retorna todos os documentos submetidos por aquele usuário</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": [
+    {
+      "codigoDocumento": "28",
+      "nome": "Convocação 2° Reunião Ordinária do Conselho Fiscal",
+      "usuario": "2",
+      "horarioSubmissao": "30/04/2024 15:40:07",
+      "situacao": "Assinado",
+      "caminho": "documentos/Convocação Reunião Conselho Fiscal (1).pdf",
+      "comprovante": "ksbfsj",
+      "tipo": "6",
+      "acesso": "2"
+    }
+    ...
+  ]
+}
+
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/validar/{codigoDocumento}/{comprovante}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Autentica o documento como assinado no sistema</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": [
+    "codigoDocumento": "50",
+    "nome": "Decreto 006/2024",
+    "usuario": "15",
+    "horarioSubmissao": "31/07/2024 16:05:57",
+    "situacao": "Assinado",
+    "caminho": "documentos/DECRETO DO GRÊMIO 006_2024.pdf",
+    "comprovante": "FUNDPE",
+    "tipo": "5",
+    "acesso": "1"
+  ]
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/cancelar/{codigoDocumento}/{idUsuario}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Cancela a submissão do documento. Observação: Um documento só pode ser cancelado
+                se não foi assinado por nenhum dos signatários até o momento da requisição</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/assinar/{codigoDocumento}/{idUsuario}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Confirma a assinatura do usuário no documento</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentosUsuario/{codigoDocumento}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Lista todas as informações de assinatura relativas ao documento e o usuário</p>
+              <div class="row text-center"><I><strong>JSON de
+                    envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/listarTipos</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Lista os tipos de documentos cadastrados no banco de dados
+              </p>
+              <div class="row text-center"><I><strong>JSON de
+                    envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[PUT]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/acesso</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Altera o tipo de visibilidade (acesso) do documento frente ao público</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I>
+              </div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[POST]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/submissao</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Submete um documento para assinatura</p>
+              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+    "usuario": "usuarioEmail@gmail.com",
+    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+}
+</pre>
+                </samp>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <div class="card mt-2">
+    <div class="card-header text-center">
+      Gerenciamento
+    </div>
+    <div class="card-body">
+    </div>
+  </div>
+
   </div>
   </div>
   <script type="text/javascript">

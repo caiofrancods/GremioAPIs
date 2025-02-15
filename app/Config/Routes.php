@@ -23,3 +23,17 @@ $routes->group('armarios', ['filter' => 'jwt'], function ($routes) {
   $routes->put('transferir', 'ArmariosController::transferirArmario');
 });
 
+// ------------ Assinatura ------------
+//$routes->group('assinatura', ['filter' => 'jwt'], function ($routes) {
+  $routes->group('assinatura', function ($routes) {
+   $routes->get('documentos', 'AssinaturaController::documentos');
+   $routes->get('documentos/tipo/(:num)', 'AssinaturaController::documentosPorTipo/$1');
+   $routes->get('listarTipos', 'AssinaturaController::listarTiposDocumentos');
+   $routes->get('documentos/usuario/(:num)', 'AssinaturaController::documentosPorUsuario/$1');
+   $routes->get('validar/(:num)/(:any)', 'AssinaturaController::validacao/$1/$2');
+   //$routes->get('cancelar/(:num)/(:num)', 'AssinaturaController::cancelarSubmissao/$1/$2');
+   $routes->post('submissao', 'AssinaturaController::submissao');
+   //$routes->get('assinar/(:num)/(:num)', 'AssinaturaController::assinar/$1/$2');
+   //$routes->put('acesso', 'AssinaturaController::alterarAcesso');
+   $routes->get('documentoUsuarios/(:num)', 'AssinaturaController::documentoUsuarios/$1');
+  });

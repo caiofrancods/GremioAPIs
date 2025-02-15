@@ -2,5 +2,5 @@
 
 function enviarEmail($email, $codDoc, $nomeUsuario, $nomeDoc)
 {
-    // ... (lógica para enviar email)
+    return "(Em breve) E-mail Enviado!";
 }
