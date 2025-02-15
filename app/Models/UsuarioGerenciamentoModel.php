@@ -1,7 +1,4 @@
 <?php
-
-
-
 namespace App\Models;
 use CodeIgniter\Model;
 
@@ -27,4 +24,26 @@ class UsuarioGerenciamentoModel extends Model
         return "erro";
     }
 
+    public function getUsuarioPorId($codigo)
+    {
+      $user = $this->where('codigo', value: $codigo)->first();
+
+      if (!$user) {
+          log_message('error', "Usuário com código {$codigo} não encontrado.");
+          return false;
+      }
+      
+    
+        // Se o usuário for um objeto, modificar a senha como propriedade
+        if (is_object($user)) {
+            $user->senha = "Informação Confidencial";
+        } else {
+            $user['senha'] = "Informação Confidencial";
+        }
+    
+        return $user;
+    }
+    
+    
+    
 }

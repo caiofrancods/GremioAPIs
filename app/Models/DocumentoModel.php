@@ -40,10 +40,10 @@ class DocumentoModel extends Model
   {
     return $this->where('usuario', $idUsuario)->orderBy('horarioSubmissao', 'DESC')->findAll();
   }
-  // public function buscarDocumento($codigo)
-  // {
-  //     return $this->find($codigo);
-  // }
+  public function buscarDocumento($codigo)
+  {
+      return $this->find($codigo);
+  }
 
   public function validacao($codigo, $comprovante)
   {
@@ -63,7 +63,13 @@ class DocumentoModel extends Model
 
   public function mudarSituacao($codigoDocumento)
   {
-    $comprovante = random_string('alnum', 6);
+    $comprovante = '';
+    $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    // Gera um código com 6 caracteres para o comprovante
+    for ($i = 0; $i < 6; $i++) {
+        $comprovante .= $caracteres[rand(0, strlen($caracteres) - 1)];
+    }
     $this->update($codigoDocumento, ['situacao' => 'Assinado', 'comprovante' => $comprovante]);
   }
 

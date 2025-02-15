@@ -439,6 +439,39 @@ ou
               </samp>
             </div>
           </div>
+          <div class="accordion">
+        <div class="accordion-item">
+          <button id="accordion-button-1" aria-expanded="false">
+            <div>
+              <span class="accordion-title p-2">[GET]</span>
+              <span class="accordion-title"><a
+                  href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documento/{codDocumento}</a></span>
+            </div>
+            <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+          </button>
+          <div class="accordion-content" aria-hidden="true">
+            <p>Retorna os dados a respeito do documento</p>
+            <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+            <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+              <samp>
+                <pre class="text-light">
+{
+  "message": {
+    "codigoDocumento": "78",
+    "nome": "Teste 1",
+    "usuario": "2",
+    "horarioSubmissao": "2025-02-15 01:50:19",
+    "situacao": "Assinado",
+    "caminho": "teste/1",
+    "comprovante": "iendss",
+    "tipo": "1",
+    "acesso": "1"
+  }
+}
+</pre>
+              </samp>
+            </div>
+          </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
               <div>
@@ -709,12 +742,12 @@ ou
   "caminho": "teste/1",
   "tipo": 1,
   "acesso": 1,
-  "signatarios": {
-    "1": 2,
-    "2": 7
-  }
+  "signatarios": [2, 7]
 }
 
+{
+  "message": "Documento do código 109 submetido"
+}
 </pre>
                 </samp>
               </div>

@@ -28,6 +28,7 @@ $routes->group('armarios', ['filter' => 'jwt'], function ($routes) {
 //$routes->group('assinatura', ['filter' => 'jwt'], function ($routes) {
   $routes->group('assinatura', function ($routes) {
    $routes->get('documentos', 'AssinaturaController::documentos');
+   $routes->get('documento/(:num)', 'AssinaturaController::documentosPorCodigo/$1');
    $routes->get('documentos/tipo/(:num)', 'AssinaturaController::documentosPorTipo/$1');
    $routes->get('listarTipos', 'AssinaturaController::listarTiposDocumentos');
    $routes->get('documentos/usuario/(:num)', 'AssinaturaController::documentosPorUsuario/$1');

@@ -9,8 +9,8 @@ use CodeIgniter\Model;
 class DocumentoUsuarioModel extends Model
 {
   protected $table = 'DocumentoUsuario';
-  protected $primaryKey = ['codUsuario']; // Chave primária composta
-  protected $allowedFields = ['codigoDocumento', 'horario', 'situacao', 'mudanca'];
+  protected $primaryKey = ['codUsuario']; 
+  protected $allowedFields = ['codUsuario', 'codigoDocumento', 'horario', 'situacao', 'mudanca'];
   protected $DBGroup = 'dbAssinatura';
 
   public function documentoUsuarios($codigoDocumento)
@@ -50,6 +50,7 @@ class DocumentoUsuarioModel extends Model
   {
     $data = ['situacao' => 'Assinado', 'mudanca' => date('d/m/Y H:i:s')];
     $this->where(['codigoDocumento' => $cod, 'codUsuario' => $user])->set($data)->update();
+    return true;
   }
 
   public function contarSignatarios($cod)
