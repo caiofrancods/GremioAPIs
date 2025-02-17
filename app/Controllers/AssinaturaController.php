@@ -32,8 +32,7 @@ class AssinaturaController extends ResourceController
           return $this->fail('Dados para submissão não enviados', 400);
       }
   
-      // Remove 'signatarios' do array antes de salvar no banco
-      $signatarios = $input['signatarios'] ?? []; // Se não existir, assume array vazio
+      $signatarios = $input['signatarios'] ?? []; 
       unset($input['signatarios']); 
   
       $resultado = $this->documentoModel->submissao($input);
@@ -42,7 +41,6 @@ class AssinaturaController extends ResourceController
           return $this->fail('Erro ao submeter o documento', 400);
       }
   
-      // Chama a função para enviar aos signatários
       if (!empty($signatarios) && is_array($signatarios)) {
           $this->enviarParaAssinar($signatarios, $resultado, $input['nome']);
       }
@@ -57,7 +55,7 @@ class AssinaturaController extends ResourceController
 
       if (!$usuario) {
         log_message('error', "Usuário não encontrado ao tentar enviar para assinatura.");
-        continue; // Pula para o próximo signatário
+        continue;
       }
 
       $data = [
@@ -79,6 +77,11 @@ class AssinaturaController extends ResourceController
 
   public function assinar($codDocumento, $idUsuario)
   {
+    $userId = json_decode($this->request->jwtUserId);
+
+    if($userId != $idUsuario){
+      return $this->respond(['message' => 'Assinatura Negada!'], 401);
+    }
     if ($this->documentoUsuarioModel->assinar($codDocumento, $idUsuario)) {
       if ($this->documentoUsuarioModel->contarSignatarios($codDocumento) == $this->documentoUsuarioModel->contarAssinaturas($codDocumento)) {
         $this->documentoModel->mudarSituacao($codDocumento);
@@ -141,6 +144,11 @@ class AssinaturaController extends ResourceController
 
   public function documentosPorUsuario($idUsuario)
   {
+    $userId = json_decode($this->request->jwtUserId);
+
+    if($userId != $idUsuario){
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+    }
     $docs = $this->documentoModel->documentosPorUsuario($idUsuario);
     return $this->respond(['message' => $docs], 200);
 
