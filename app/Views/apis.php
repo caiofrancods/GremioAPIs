@@ -409,13 +409,13 @@ ou
             <div>
               <span class="accordion-title p-2">[GET]</span>
               <span class="accordion-title"><a
-                  href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos</a></span>
+                  href="api.gremiotimoteo.online/assinatura/documentos">api.gremiotimoteo.online/assinatura/documentos</a></span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
           <div class="accordion-content" aria-hidden="true">
             <p>Retorna todos os documentos da base da dados</p>
-            <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+            <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
             <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
               <samp>
                 <pre class="text-light">
@@ -445,7 +445,7 @@ ou
             <div>
               <span class="accordion-title p-2">[GET]</span>
               <span class="accordion-title"><a
-                  href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documento/{codDocumento}</a></span>
+                  href="api.gremiotimoteo.online/assinatura/documento/{codDocumento}">api.gremiotimoteo.online/assinatura/documento/{codDocumento}</a></span>
             </div>
             <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
           </button>
@@ -477,13 +477,13 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos/tipo/{idTipo}</a></span>
+                    href="api.gremiotimoteo.online/assinatura/documentos/tipo/{idTipo}">api.gremiotimoteo.online/assinatura/documentos/tipo/{idTipo}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Retorna todos os documentos daquele tipo específico</p>
-              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
@@ -515,13 +515,13 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentos/usuario/{idUsuario}</a></span>
+                    href="api.gremiotimoteo.online/assinatura/documentos/usuario/{idUsuario}">api.gremiotimoteo.online/assinatura/documentos/usuario/{idUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Retorna todos os documentos submetidos por aquele usuário</p>
-              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
@@ -553,7 +553,7 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/validar/{codigoDocumento}/{comprovante}</a></span>
+                    href="api.gremiotimoteo.online/assinatura/validar/{codigoDocumento}/{comprovante}">api.gremiotimoteo.online/assinatura/validar/{codigoDocumento}/{comprovante}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
@@ -587,14 +587,14 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/cancelar/{codigoDocumento}/{idUsuario}</a></span>
+                    href="api.gremiotimoteo.online/assinatura/cancelar/{codigoDocumento}/{idUsuario}">api.gremiotimoteo.online/assinatura/cancelar/{codigoDocumento}/{idUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Cancela a submissão do documento. Observação: Um documento só pode ser cancelado
                 se não foi assinado por nenhum dos signatários até o momento da requisição</p>
-              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
@@ -611,7 +611,7 @@ ou
 ou
 
 {
-  "message": "SDocumento não encontrado"
+  "message": "Documento não encontrado"
 }
 </pre>
                 </samp>
@@ -623,19 +623,36 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/assinar/{codigoDocumento}/{idUsuario}</a></span>
+                    href="api.gremiotimoteo.online/assinatura/assinar/{codigoDocumento}/{idUsuario}">api.gremiotimoteo.online/assinatura/assinar/{codigoDocumento}/{idUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Confirma a assinatura do usuário no documento</p>
-              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
 {
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+  "message": "Assinatura Negada!"
+}
+
+ou
+
+{
+  "message": "Documento assinado por todos"
+}
+
+ou 
+
+{
+  "message": "Documento assinado pelo usuario"
+}
+
+ou 
+
+{
+  "message": "Falha ao assinar o documento"
 }
 </pre>
                 </samp>
@@ -647,20 +664,33 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/documentosUsuario/{codigoDocumento}</a></span>
+                    href=">api.gremiotimoteo.online/assinatura/documentoUsuarios/{codigoDocumento}">api.gremiotimoteo.online/assinatura/documentoUsuarios/{codigoDocumento}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Lista todas as informações de assinatura relativas ao documento e o usuário</p>
-              <div class="row text-center"><I><strong>JSON de
-                    envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
-{
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+                  {
+  "message": [
+    {
+      "codUsuario": "2",
+      "codigoDocumento": "78",
+      "horario": "2025-02-15 01:50:19",
+      "situacao": "Assinado",
+      "mudanca": "15/02/2025 01:54:09"
+    },
+    {
+      "codUsuario": "7",
+      "codigoDocumento": "78",
+      "horario": "2025-02-15 01:50:19",
+      "situacao": "Assinado",
+      "mudanca": "15/02/2025 01:54:13"
+    }
+  ]
 }
 </pre>
                 </samp>
@@ -673,7 +703,7 @@ ou
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/listarTipos</a></span>
+                    href="api.gremiotimoteo.online/assinatura/listarTipos">api.gremiotimoteo.online/assinatura/listarTipos</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
@@ -686,8 +716,7 @@ ou
                 <samp>
                   <pre class="text-light">
 {
-    "usuario": "usuarioEmail@gmail.com",
-    "senha": "48da54c6a8029a8c1eea14cd715067a7"
+  "message": "(Em breve) Tipos"
 }
 </pre>
                 </samp>
@@ -699,7 +728,7 @@ ou
               <div>
                 <span class="accordion-title p-2">[PUT]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/acesso</a></span>
+                    href="api.gremiotimoteo.online/assinatura/acesso">api.gremiotimoteo.online/assinatura/acesso</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
@@ -725,7 +754,7 @@ ou
               <div>
                 <span class="accordion-title p-2">[POST]</span>
                 <span class="accordion-title"><a
-                    href="api.gremiotimoteo.online/armarios/auth/{email}/{senha}">api.gremiotimoteo.online/assinatura/submissao</a></span>
+                    href="api.gremiotimoteo.online/assinatura/submissao">api.gremiotimoteo.online/assinatura/submissao</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
