@@ -5,6 +5,9 @@ namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\ArmarioModel;
 use App\Models\UsuarioArmarioModel;
+use Firebase\JWT\Key;
+use Firebase\JWT\JWT;
+helper(filenames: 'EsqueciSenha_helper');
 
 class ArmariosController extends ResourceController
 {
@@ -72,26 +75,44 @@ class ArmariosController extends ResourceController
 
     return $this->fail('Erro ao cadastrar usuário.', 500);
   }
+
+  public function solicitarAlteracaoSenha($email)
+  {
+    $user = $this->usuarioModel->getUsuarioPorEmail($email);
+    if(!$user){
+      return $this->respond(['message' => 'Usuário não encontrado'], 400);
+    }
+    $token = gerarTokenRecuperacao($user['idUsuario']);
+    $this->usuarioModel->setRecuperacao($user['idUsuario'], $token);
+    if(enviarEmailRecuperacaoSenhaArmario($email, $user['nome'], $token)){
+      return $this->respond(['message' => 'E-mail de recuperação de senha enviado!'], 200);
+    }else{
+      return $this->respond(['message' => 'Erro ao enviar a recuperação de senha ao e-mail'], 400);
+    }
+    
+  }
   public function alterarSenha()
   {
-    $input = $this->request->getRawInput();
-
-    if (!isset($input['id']) || !isset($input['novaSenha'])) {
-      return $this->fail('ID e nova senha são obrigatórios.', 400);
+    $input = $this->request->getJSON(true);
+    if (!isset($input['token']) || !isset($input['novaSenha'])) {
+      return $this->fail('Token e nova senha são obrigatórios.', 400);
     }
+    $token = $input['token'];
+    $senha = md5($input['novaSenha']);
 
-    if ($this->usuarioModel->updateUsuario($input['id'], ['senha' => $input['novaSenha']])) {
-      return $this->respond(['message' => 'Senha alterada com sucesso.']);
-    }
+    $decoded = JWT::decode($token, new Key(getenv('JWT_SECRET_ESQ_SENHA'), 'HS256'));
 
+    $recuperacao = $this->usuarioModel->getRecuperacao($decoded->data->id);
+
+    if($recuperacao == $token){
+      if ($this->usuarioModel->updateUsuario($decoded->data->id, $senha)) {
+        $this->usuarioModel->setRecuperacao($decoded->data->id, "");
+        return $this->respond(['message' => 'Senha alterada com sucesso.']);
+      }
+    }    
     return $this->fail('Erro ao alterar senha.', 500);
   }
-
-  public function solicitarAlteracaoSenha()
-  {
-    return $this->respond(['message' => 'E-mail de recuperação de senha enviado!'], 200);
-  }
-
+  
   public function alterarDados()
   {
     $input = $this->request->getRawInput();

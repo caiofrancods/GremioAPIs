@@ -68,6 +68,11 @@ class Armario extends Migration
                 'constraint' => '255',
                 'null' => false
             ],
+            'recuperacao' => [
+              'type' => 'VARCHAR',
+              'constraint' => '300',
+              'null' => false
+          ],
         ]);
         $this->forge->addPrimaryKey('idUsuario');
         $this->forge->addForeignKey('idCurso', 'Curso', 'idCurso', 'CASCADE', 'CASCADE');

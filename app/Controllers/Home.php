@@ -8,4 +8,9 @@ class Home extends BaseController
     {
         return view('apis');
     }
+
+    public function recuperacaoSenha(): string
+    {
+        return view('recuperacaoSenha');
+    }
 }
