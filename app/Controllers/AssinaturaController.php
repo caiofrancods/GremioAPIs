@@ -100,6 +100,11 @@ class AssinaturaController extends ResourceController
   }
   public function cancelarSubmissao($codDocumento, $idUsuario)
   {
+    $userId = json_decode($this->request->jwtUserId);
+
+    if ($userId != $idUsuario) {
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+    }
     if ($this->documentoModel->cancelarSubmissao($codDocumento)) {
       if ($this->documentoUsuarioModel->atualizarSituacao($codDocumento, 'Cancelado')) {
         return $this->respond(['message' => "Documento cancelado!"], 200);

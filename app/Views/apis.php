@@ -63,7 +63,6 @@
               </samp>
             </div>
             <p>Para utilizar o token de acesso, envie como "authorization" o texto "Bearer &lttoken&gt"</p>
-            <p><strong>Todas as requisições que NÃO são de login, precisam de enviar o token para autenticação.</strong>
             </p>
           </div>
         </div>
@@ -104,7 +103,6 @@
               </samp>
             </div>
             <p>Para utilizar o token de acesso, envie como "authorization" o texto "Bearer &lttoken&gt"</p>
-            <p><strong>Todas as requisições que NÃO são de login, precisam de enviar o token para autenticação.</strong>
             </p>
           </div>
         </div>
@@ -173,12 +171,14 @@
     "dataNascimento": "2007-01-26",
     "idCurso": "2",
     "ano": "3",
-    "senha": "Informação Confidencial"
+    "senha": "Informação Confidencial",
+    "recuperacao": ""
   }
 }
 </pre>
               </samp>
             </div>
+            <p>Observação: Informações restritras ao usuário, sendo necessário token de autenticação <strong>do usuário</strong></p>
           </div>
           <div class="accordion-item">
             <button id="accordion-button-1" aria-expanded="false">
@@ -218,7 +218,7 @@
 </pre>
                 </samp>
               </div>
-
+              <p>Observação: Informações restritras ao usuário, sendo necessário token de autenticação <strong>do usuário</strong></p>
             </div>
           </div>
           <div class="accordion-item">
@@ -333,18 +333,21 @@ JSON de recebimento
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
-{
-    "email": "fulano@gmail.com",
-    "novaSenha": "48da54c6a8029a8c1eea14cd715067a7"
+                  {
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkV4ZW1wbG8iLCJhZG1pbiI6dHJ1ZSwiaWF0IjoxNzM5NTQyMjM5LCJleHAiOjE3Mzk1NDU4Mzl9.yT9fCFn4v-6T9ca66cfmRk0QEYKORcoSvwjSmyWIP48",
+    "novaSenha": "teste123"
 }
 </pre>
                 </samp>
               </div>
+              <p>Observação: A senha não precisa estar criptografada md5</strong></p>
               <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
-JSON de recebimento
+{
+  "message": "Senha alterada com sucesso."
+}
 </pre>
                 </samp>
               </div>
@@ -428,9 +431,9 @@ ou
       "horarioSubmissao": "31/07/2024 16:05:57",
       "situacao": "Assinado",
       "caminho": "documentos/DECRETO DO GRÊMIO 006_2024.pdf",
-      "comprovante": "skfekj",
       "tipo": "5",
-      "acesso": "1"
+      "acesso": "1",
+      "comprovante": "skfekj"
     }
     ...
   ]
@@ -463,9 +466,9 @@ ou
     "horarioSubmissao": "2025-02-15 01:50:19",
     "situacao": "Assinado",
     "caminho": "teste/1",
-    "comprovante": "iendss",
     "tipo": "1",
-    "acesso": "1"
+    "acesso": "1",
+    "comprovante": "iendss"
   }
 }
 </pre>
@@ -496,9 +499,9 @@ ou
       "horarioSubmissao": "31/07/2024 14:58:27",
       "situacao": "Cancelado",
       "caminho": "documentos/2° Reunião Ordinária do Conselho Fiscal.pdf",
-      "comprovante": "mfrfsk",
       "tipo": "2",
-      "acesso": "2"
+      "acesso": "2",
+      "comprovante": "mfrfsk"
     }
     ...
   ]
@@ -534,9 +537,9 @@ ou
       "horarioSubmissao": "30/04/2024 15:40:07",
       "situacao": "Assinado",
       "caminho": "documentos/Convocação Reunião Conselho Fiscal (1).pdf",
-      "comprovante": "ksbfsj",
       "tipo": "6",
-      "acesso": "2"
+      "acesso": "2",
+      "comprovante": "ksbfsj"
     }
     ...
   ]
@@ -545,6 +548,7 @@ ou
 </pre>
                 </samp>
               </div>
+              <p>Observação: Informações restritras ao usuário, sendo necessário token de autenticação <strong>do usuário</strong></p>
             </div>
           </div>
 
@@ -559,7 +563,7 @@ ou
             </button>
             <div class="accordion-content" aria-hidden="true">
               <p>Autentica o documento como assinado no sistema</p>
-              <div class="row text-center"><I><strong>JSON de envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
@@ -579,6 +583,7 @@ ou
 </pre>
                 </samp>
               </div>
+              <p>Não é necessário token de autenticação</p>
             </div>
           </div>
 
@@ -616,6 +621,7 @@ ou
 </pre>
                 </samp>
               </div>
+              <p>Observação: Informações restritras ao usuário, sendo necessário token de autenticação <strong>do usuário</strong></p>
             </div>
           </div>
           <div class="accordion-item">
@@ -657,6 +663,7 @@ ou
 </pre>
                 </samp>
               </div>
+              <p>Observação: Informações restritras ao usuário, sendo necessário token de autenticação <strong>do usuário</strong></p>
             </div>
           </div>
           <div class="accordion-item">
@@ -669,7 +676,7 @@ ou
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
             </button>
             <div class="accordion-content" aria-hidden="true">
-              <p>Lista todas as informações de assinatura relativas ao documento e o usuário</p>
+              <p>Lista todas as informações da tabela DocumentoUsuario relacionada ao documento em específico</p>
               <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>

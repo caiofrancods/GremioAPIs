@@ -8,7 +8,7 @@ class ArmarioModel extends Model
 {
     protected $table = 'Armario';
     protected $primaryKey = 'idArmario';
-    protected $allowedFields = ['codigo', 'dono', 'situacao', 'renovacao', 'comp'];
+    protected $allowedFields = ['codigo', 'dono', 'situacao', 'renovacao', 'comprovante'];
     protected $DBGroup = 'default';
 
     public function getArmarios($id = null)
@@ -17,10 +17,10 @@ class ArmarioModel extends Model
     
         if (is_array($armarios)) {
             foreach ($armarios as &$armario) {
-                $armario['comp'] = 'Confidencial';
+                $armario['comprovante'] = 'Confidencial';
             }
         } elseif (is_array($armarios)) { // Caso retorne um único registro
-            $armarios['comp'] = 'Confidencial';
+            $armarios['comprovante'] = 'Confidencial';
         }
     
         return $armarios;
