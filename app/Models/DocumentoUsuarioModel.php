@@ -9,7 +9,7 @@ use CodeIgniter\Model;
 class DocumentoUsuarioModel extends Model
 {
   protected $table = 'DocumentoUsuario';
-  protected $primaryKey = ['codUsuario']; 
+  protected $primaryKey = ['codUsuario'];
   protected $allowedFields = ['codUsuario', 'codigoDocumento', 'horario', 'situacao', 'mudanca'];
   protected $DBGroup = 'dbAssinatura';
 
@@ -22,7 +22,7 @@ class DocumentoUsuarioModel extends Model
       log_message('error', 'Erro ao cancelar submissão: ' . $e->getMessage());
       return false;
     }
-    
+
   }
   public function atualizarSituacao($codigoDocumento, $situacao)
   {
@@ -37,14 +37,18 @@ class DocumentoUsuarioModel extends Model
   }
   public function criarAssinatura($data)
   {
-      try {
-          return $this->insert($data);
-      } catch (\Exception $e) {
-          log_message('error', 'Erro ao criar assinatura: ' . $e->getMessage());
-          return false;
-      }
+    try {
+      return $this->insert($data);
+    } catch (\Exception $e) {
+      log_message('error', 'Erro ao criar assinatura: ' . $e->getMessage());
+      return false;
+    }
   }
-  
+
+  public function verificarSignatario($documento, $user){
+    return $this->where(['codigoDocumento' => $documento, 'codUsuario' => $user])->first();
+  }
+
 
   public function assinar($cod, $user)
   {

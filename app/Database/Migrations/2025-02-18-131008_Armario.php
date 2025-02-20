@@ -41,7 +41,7 @@ class Armario extends Migration
             'telefone' => [
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => true
+                'null' => false
             ],
             'email' => [
                 'type' => 'VARCHAR',
@@ -50,18 +50,18 @@ class Armario extends Migration
             ],
             'dataNascimento' => [
                 'type' => 'DATE',
-                'null' => true
+                'null' => false
             ],
             'idCurso' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
-                'null' => true
+                'null' => false
             ],
             'ano' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'null' => true
+                'null' => false
             ],
             'senha' => [
                 'type' => 'VARCHAR',

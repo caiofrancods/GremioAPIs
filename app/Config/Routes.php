@@ -18,13 +18,13 @@ $routes->group('armarios', ['filter' => 'jwt'], function ($routes) {
   $routes->get('/', 'ArmariosController::index');
   $routes->get('usuario/(:num)', 'ArmariosController::armariosPorUsuario/$1');
   $routes->get('infousuario/(:num)', 'ArmariosController::dadosUsuario/$1');
-  $routes->post('usuario/cadastrar', 'ArmariosController::cadastroUsuario');
   $routes->put('usuario/alterarDados', 'ArmariosController::alterarDados');
   $routes->put('transferir', 'ArmariosController::transferirArmario');
 });
 $routes->get('armarios/usuario/solicitacao/alterarsenha/(:any)', 'ArmariosController::solicitarAlteracaoSenha/$1');
 $routes->get('armarios/validar/(:any)/(:any)', 'ArmariosController::validacao/$1/$2');
 $routes->get('armarios/usuario/listarCursos', 'ArmariosController::listarCursos');
+$routes->post('armarios/usuario/cadastrar', 'ArmariosController::cadastroUsuario');
 $routes->put('armarios/usuario/alterarSenha', 'ArmariosController::alterarSenha');
 
 // ------------ Assinatura ------------

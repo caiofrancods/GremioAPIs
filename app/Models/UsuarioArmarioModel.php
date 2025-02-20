@@ -44,7 +44,11 @@ class UsuarioArmarioModel extends Model
         return $this->insert($data);
     }
 
-    public function updateUsuario($id, $novaSenha)
+    public function updateUsuario($id, $data)
+    { 
+      return $this->update($id, $data);
+    }
+    public function updateSenha($id, $novaSenha)
     { 
       $senha = md5(string: $novaSenha . getenv('code_complementar'));
       return $this->update($id, ['senha' => $senha]);

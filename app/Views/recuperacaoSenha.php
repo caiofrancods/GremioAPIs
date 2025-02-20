@@ -22,7 +22,7 @@
   </nav>
   <div class="corpo mt-4">
     <div>
-      <form id="#formularioRecuperacao" class="mt-4">
+      <form id="formularioRecuperacao" class="mt-4">
         <?php if (isset($_GET['token']) && isset($_GET['sistema'])) {
           echo '<input type="text" id="token" name="token" class="d-none" value="' . htmlspecialchars($_GET['token']) . '">';
           echo '<input type="text" id="sistema" name="sistema" class="d-none" value="' . htmlspecialchars($_GET['sistema']) . '">';
@@ -56,7 +56,7 @@
       if(sistema == 1){
         if (token) {
         $.ajax({
-          url: 'http://localhost:8080/armarios/usuario/alterarSenha',
+          url: '<?php echo base_url('usuario/alterarSenha'); ?>',
           type: 'PUT',
           data: {
             novaSenha: senha,

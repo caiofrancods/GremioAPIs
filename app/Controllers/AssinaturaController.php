@@ -82,14 +82,16 @@ class AssinaturaController extends ResourceController
     if ($userId != $idUsuario) {
       return $this->respond(['message' => 'Assinatura Negada!'], 401);
     }
-    if ($this->documentoUsuarioModel->assinar($codDocumento, $idUsuario)) {
-      if ($this->documentoUsuarioModel->contarSignatarios($codDocumento) == $this->documentoUsuarioModel->contarAssinaturas($codDocumento)) {
-        $this->documentoModel->mudarSituacao($codDocumento);
-        return $this->respond(data: ['message' => "Documento assinado por todos", 200]);
+    if(!$this->documentoUsuarioModel->verificarSignatario($codDocumento, $idUsuario)){
+      return $this->respond(['message' => "O usuário não é signatário do documento", 401]);
+    }else{
+      if ($this->documentoUsuarioModel->assinar($codDocumento, $idUsuario)) {
+        if ($this->documentoUsuarioModel->contarSignatarios($codDocumento) == $this->documentoUsuarioModel->contarAssinaturas($codDocumento)) {
+          $this->documentoModel->mudarSituacao($codDocumento);
+          return $this->respond(data: ['message' => "Documento assinado por todos", 200]);
+        }
+        return $this->respond(data: ['message' => "Documento assinado pelo usuario", 200]);
       }
-      return $this->respond(data: ['message' => "Documento assinado pelo usuario", 200]);
-    } else {
-      return $this->respond(['message' => "Falha ao assinar o documento", 200]);
     }
   }
 
@@ -109,15 +111,21 @@ class AssinaturaController extends ResourceController
     if ($userId != $idUsuario) {
       return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
     }
-    if ($this->documentoModel->cancelarSubmissao($codDocumento)) {
-      if ($this->documentoUsuarioModel->atualizarSituacao($codDocumento, 'Cancelado')) {
-        return $this->respond(['message' => "Documento cancelado!"], 200);
+
+    if(!$this->documentoUsuarioModel->contarAssinaturas($codDocumento) > 0){
+      if ($this->documentoModel->cancelarSubmissao($codDocumento)) {
+        if ($this->documentoUsuarioModel->atualizarSituacao($codDocumento, 'Cancelado')) {
+          return $this->respond(['message' => "Documento cancelado!"], 200);
+        } else {
+          return $this->respond(['message' => "Situação não alterada para os usuarios"], 400);
+        }
       } else {
-        return $this->respond(['message' => "Situação não alterada para os usuarios"], 400);
+        return $this->respond(['message' => "Documento não encontrado"], 400);
       }
-    } else {
-      return $this->respond(['message' => "Documento não encontrado"], 400);
+    }else{
+      return $this->respond(['message' => "O documento já foi assinado por um usuário. Não foi possível cancelar"], 400);
     }
+    
   }
 
   public function alterarAcesso()

@@ -9,8 +9,6 @@ require_once APPPATH . 'ThirdParty/PHPMailer/SMTP.php';
 
 function enviarEmail($email, $codDoc, $nomeUsuario, $nomeDoc)
 {
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
   try {
     $mail = new PHPMailer(true);
 

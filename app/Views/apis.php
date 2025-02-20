@@ -359,7 +359,9 @@
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
-JSON que receb
+{
+  "message": "Usuário cadastrado com sucesso!"
+}
 </pre>
                 </samp>
               </div>
@@ -473,6 +475,13 @@ ou
 {
   "message": "Erro ao transferir o armário",
   "status": 400
+}
+
+ou
+
+{
+  "message": "O usuário não é proprietário desta unidade",
+  "status": 401
 }
 </pre>
                 </samp>
