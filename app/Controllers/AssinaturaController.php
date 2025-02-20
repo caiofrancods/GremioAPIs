@@ -47,7 +47,7 @@ class AssinaturaController extends ResourceController
       $this->enviarParaAssinar($signatarios, $resultado, $input['nome']);
     }
 
-    return $this->respond(['message' => 'Documento do código ' . $resultado . ' submetido'], 200);
+    return $this->respond(['message' => 'Documento do código ' . $resultado . ' submetido'], 201);
   }
 
   public function enviarParaAssinar($signatarios, $codDoc, $nomeDoc)
@@ -109,7 +109,7 @@ class AssinaturaController extends ResourceController
     $userId = json_decode($this->request->jwtUserId);
 
     if ($userId != $idUsuario) {
-      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 403);
     }
 
     if(!$this->documentoUsuarioModel->contarAssinaturas($codDocumento) > 0){

@@ -40,11 +40,11 @@ class ArmariosController extends ResourceController
     $userId = json_decode($this->request->jwtUserId);
     $user = $this->usuarioModel->getUsuarioPorEmail($input['remetente']);
     if ($userId != $user['idUsuario']) {
-      return $this->respond(['message' => 'O usuário não é proprietário desta unidade'], 401);
+      return $this->respond(['message' => 'O usuário não é proprietário desta unidade'], 403);
     }
 
     if ($this->armariosModel->transferirArmario($input['remetente'], $input['destinatario'], $input['armario'])) {
-      return $this->respond(['message' => 'Transferência realizada com sucesso.']);
+      return $this->respond(['message' => 'Transferência realizada com sucesso.'], 200);
     }
     return $this->fail('Erro ao transferir armário', 400);
   }
@@ -53,7 +53,7 @@ class ArmariosController extends ResourceController
     $userId = json_decode($this->request->jwtUserId);
 
     if ($userId != $usuario) {
-      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 403);
     }
 
     $armarios = $this->armariosModel->getArmarioDono($usuario);
@@ -65,7 +65,7 @@ class ArmariosController extends ResourceController
     $userId = json_decode($this->request->jwtUserId);
 
     if ($userId != $usuario) {
-      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 401);
+      return $this->respond(['message' => 'O usuário não tem acesso a estes dados'], 403);
     }
     $user = $this->usuarioModel->getUsuarioPorId($usuario);
     return $this->respond(['message' => $user], 200);
@@ -81,10 +81,10 @@ class ArmariosController extends ResourceController
     }
 
     if ($this->usuarioModel->insertUsuario($input)) {
-      return $this->respondCreated(['message' => 'Usuário cadastrado com sucesso!'], 200);
+      return $this->respond(['message' => 'Usuário cadastrado com sucesso!'], 201);
     }
 
-    return $this->fail('Erro ao cadastrar usuário.', 500);
+    return $this->fail('Erro ao cadastrar usuário.', 400);
   }
 
   public function solicitarAlteracaoSenha($email)
@@ -130,7 +130,7 @@ class ArmariosController extends ResourceController
         }
       }
 
-      return $this->fail('Erro ao alterar senha.', 500);
+      return $this->fail('Erro ao alterar senha.', 400);
     } catch (Exception $e) {
       return $this->fail('Token inválido ou expirado.', 401);
     }
@@ -148,14 +148,14 @@ class ArmariosController extends ResourceController
     $userId = json_decode($this->request->jwtUserId);
 
     if ($userId != $input['idUsuario']) {
-      return $this->respond(['message' => 'O usuário não pode alterar estes dados'], 401);
+      return $this->respond(['message' => 'O usuário não pode alterar estes dados'], 403);
     }
 
     if ($this->usuarioModel->updateUsuario($input['idUsuario'], $input)) {
       return $this->respond(['message' => 'Dados alterados com sucesso.']);
     }
 
-    return $this->fail('Erro ao alterar dados.', 500);
+    return $this->fail('Erro ao alterar dados.', status: 400);
   }
 
   public function validacao($codigoArmario, $comprovante)
