@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CursoModel;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\ArmarioModel;
 use App\Models\UsuarioArmarioModel;
@@ -15,10 +16,13 @@ class ArmariosController extends ResourceController
   private $usuarioModel;
   private $armariosModel;
 
+  private $cursoModel;
+
   public function __construct()
   {
     $this->usuarioModel = new UsuarioArmarioModel();
     $this->armariosModel = new ArmarioModel();
+    $this->cursoModel = new CursoModel();
   }
   public function index()
   {
@@ -132,5 +136,28 @@ class ArmariosController extends ResourceController
     }
 
     return $this->fail('Erro ao alterar dados.', 500);
+  }
+
+  public function validacao($codigoArmario, $comprovante)
+  {
+    $arm = $this->armariosModel->validacao($codigoArmario, $comprovante);
+    $dono = $this->usuarioModel->getUsuarioPorId($arm['dono']);
+    $arm['nomeDono'] = $dono['nome'];
+    $arm['cursoDono'] = $dono['idCurso'];
+    if ($arm != null) {
+      return $this->respond(['message' => $arm], 200);
+    } else {
+      return $this->respond(['message' => "Erro ao validar"], 400);
+    }
+  }
+
+  public function listarCursos()
+  {
+    $cursos = $this->cursoModel->listarCursos();
+    if ($cursos != null) {
+      return $this->respond(['message' => $cursos], 200);
+    } else {
+      return $this->respond(['message' => "Erro ao listar"], 400);
+    }
   }
 }

@@ -226,6 +226,89 @@
               <div>
                 <span class="accordion-title p-2">[GET]</span>
                 <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/armarios/validar/{codigoArmario}/{comprovante}">api.gremiotimoteo.online/armarios/validar/{codigoArmario}/{comprovante}</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Autentica o comprovante de armário no sistema</p>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+                  {
+  "message": {
+    "codigo": "1A002",
+    "dono": "2",
+    "nomeDono": "Usuário 2",
+    "cursoDono": "3"
+  }
+}
+</pre>
+                </samp>
+              </div>
+              <p>Não é necessário token de autenticação</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
+                    href="api.gremiotimoteo.online/assinatura/listarTipos">api.gremiotimoteo.online/armarios/usuario/listarCursos</a></span>
+              </div>
+              <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="accordion-content" aria-hidden="true">
+              <p>Lista os cursos cadastrados no banco de dados
+              </p>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
+              <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
+                <samp>
+                  <pre class="text-light">
+{
+  "message": [
+    {
+      "idCurso": "1",
+      "descricao": "Arquitetura"
+    },
+    {
+      "idCurso": "2",
+      "descricao": "Desenvolvimento de Sistemas"
+    },
+    {
+      "idCurso": "3",
+      "descricao": "Edificações"
+    },
+    {
+      "idCurso": "4",
+      "descricao": "Eng. da Computação"
+    },
+    {
+      "idCurso": "5",
+      "descricao": "Eng. Metalúrgica"
+    },
+    {
+      "idCurso": "6",
+      "descricao": "Metalurgia"
+    },
+    {
+      "idCurso": "7",
+      "descricao": "Química"
+    }
+  ]
+}
+</pre>
+                </samp>
+              </div>
+              <p>Não é necessário token de autenticação</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button id="accordion-button-1" aria-expanded="false">
+              <div>
+                <span class="accordion-title p-2">[GET]</span>
+                <span class="accordion-title"><a
                     href="api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}">api.gremiotimoteo.online/armarios/usuario/solicitacao/alterarsenha/{emailUsuario}</a></span>
               </div>
               <span class="icon bi bi-chevron-down" aria-hidden="true"></span>
@@ -717,17 +800,50 @@ ou
             <div class="accordion-content" aria-hidden="true">
               <p>Lista os tipos de documentos cadastrados no banco de dados
               </p>
-              <div class="row text-center"><I><strong>JSON de
-                    envio</strong></I></div>
+              <div class="row text-center"><I><strong>Retorno JSON</strong></I></div>
               <div class="row p-3 border m-3 mt-1 rounded bg-dark text-light">
                 <samp>
                   <pre class="text-light">
 {
-  "message": "(Em breve) Tipos"
+  "message": [
+    {
+      "id": "1",
+      "tipo": "Ata"
+    },
+    {
+      "id": "2",
+      "tipo": "Convocação"
+    },
+    {
+      "id": "3",
+      "tipo": "Documentos de Gestão"
+    },
+    {
+      "id": "4",
+      "tipo": "Ofício"
+    },
+    {
+      "id": "5",
+      "tipo": "Prestação de Contas"
+    },
+    {
+      "id": "6",
+      "tipo": "Registro de Movimentação Financeira"
+    },
+    {
+      "id": "7",
+      "tipo": "Solicitação de Verba"
+    },
+    {
+      "id": "8",
+      "tipo": "Outro"
+    }
+  ]
 }
 </pre>
                 </samp>
               </div>
+              <p>Não é necessário token de autenticação</p>
             </div>
           </div>
           <div class="accordion-item">

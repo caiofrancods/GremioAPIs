@@ -23,6 +23,8 @@ $routes->group('armarios', ['filter' => 'jwt'], function ($routes) {
   $routes->put('transferir', 'ArmariosController::transferirArmario');
 });
 $routes->get('armarios/usuario/solicitacao/alterarsenha/(:any)', 'ArmariosController::solicitarAlteracaoSenha/$1');
+$routes->get('armarios/validar/(:any)/(:any)', 'ArmariosController::validacao/$1/$2');
+$routes->get('armarios/usuario/listarCursos', 'ArmariosController::listarCursos');
 $routes->put('armarios/usuario/alterarSenha', 'ArmariosController::alterarSenha');
 
 // ------------ Assinatura ------------
@@ -31,7 +33,7 @@ $routes->group('assinatura', ['filter' => 'jwt'], function ($routes) {
    $routes->get('documentos', 'AssinaturaController::documentos');
    $routes->get('documento/(:num)', 'AssinaturaController::documentosPorCodigo/$1');
    $routes->get('documentos/tipo/(:num)', 'AssinaturaController::documentosPorTipo/$1');
-   $routes->get('listarTipos', 'AssinaturaController::listarTiposDocumentos');
+   
    $routes->get('documentos/usuario/(:num)', 'AssinaturaController::documentosPorUsuario/$1');
    $routes->get('cancelar/(:num)/(:num)', 'AssinaturaController::cancelarSubmissao/$1/$2');
    $routes->post('submissao', 'AssinaturaController::submissao');
@@ -41,3 +43,4 @@ $routes->group('assinatura', ['filter' => 'jwt'], function ($routes) {
   });
 
   $routes->get('assinatura/validar/(:num)/(:any)', 'AssinaturaController::validacao/$1/$2');
+  $routes->get('assinatura/listarTipos', 'AssinaturaController::listarTiposDocumentos');

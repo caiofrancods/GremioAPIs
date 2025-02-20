@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\DocumentoModel;
 use App\Models\DocumentoUsuarioModel;
+use App\Models\TipoModel;
 use App\Models\UsuarioGerenciamentoModel;
 use CodeIgniter\RESTful\ResourceController;
 helper(filenames: 'Assinatura_helper');
@@ -14,11 +15,14 @@ class AssinaturaController extends ResourceController
   private $documentoUsuarioModel;
   private $usuarioGerenciamnto;
 
+  private $tipoModel;
+
   public function __construct()
   {
     $this->documentoModel = new DocumentoModel();
     $this->documentoUsuarioModel = new DocumentoUsuarioModel();
     $this->usuarioGerenciamnto = new UsuarioGerenciamentoModel();
+    $this->tipoModel = new TipoModel();
   }
 
   public function submissao()
@@ -170,7 +174,12 @@ class AssinaturaController extends ResourceController
 
   public function listarTiposDocumentos()
   {
-    return $this->respond(['message' => "(Em breve) Tipos"], 200);
+    $tipos = $this->tipoModel->listarTipos();
+    if ($tipos != null) {
+      return $this->respond(['message' => $tipos], 200);
+    } else {
+      return $this->respond(['message' => "Erro ao listar"], 400);
+    }
   }
 }
 
